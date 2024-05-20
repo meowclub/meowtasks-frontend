@@ -30,10 +30,10 @@
           @for (color of colors; track $index) {
             @if ($index == checkedColor) {
               <!-- First color -->
-              <input checked type="radio" name="input-color" class="input-radio" value="{{$index}}" [style]="{backgroundColor: color}">
+              <input checked type="radio" name="input-color" class="input-radio" value="{{$index}}" [style]="{backgroundColor: color.value}">
             }
             @else {
-              <input type="radio" name="input-color" class="input-radio" value="{{$index}}" [style]="{backgroundColor: color}">
+              <input type="radio" name="input-color" class="input-radio" value="{{$index}}" [style]="{backgroundColor: color.value}">
             }
           }
         </div>
@@ -46,10 +46,10 @@
           @for (avatar of avatars; track $index) {
             @if ($index == checkedAvatar) {
               <!-- First avatar -->
-              <input checked type="radio" name="input-avatar" class="input-radio-image" value="{{$index}}" [style]="{background: avatar}">
+              <input checked type="radio" name="input-avatar" class="input-radio-image" value="{{$index}}" [style]="{background: avatar.value}">
             }
             @else {
-              <input type="radio" name="input-avatar" class="input-radio-image" value="{{$index}}" [style]="{background: avatar, backgroundSize: 'cover'}">
+              <input type="radio" name="input-avatar" class="input-radio-image" value="{{$index}}" [style]="{background: avatar.value}">
             }
           }
         </div>
