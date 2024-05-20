@@ -8,6 +8,7 @@ module.exports = {
         secondary: "var(--color-secondary);",
         light: "var(--color-light);",
         background: "var(--color-background);",
+        placeholder: "var(--color-placeholder);",
       },
     },
   },

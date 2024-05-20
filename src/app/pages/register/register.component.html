@@ -1,0 +1,63 @@
+<main class="layout">
+  <form action="" class="flex flex-col gap-3 w-full">
+    <h2 class="subt">Ready to manage your tasks? Let's go</h2>
+
+    <div class="flex flex-col gap-5">
+      <label class="label text-secondary">
+        Nickname
+        <input class="input" type="text" placeholder="A cat lover" required>
+      </label>
+  
+      <label class="label text-secondary">
+        Password
+        <input class="input" type="text" placeholder="********" required>
+      </label>
+  
+      <label class="label text-secondary">
+        Confirm password
+        <input class="input" type="text" placeholder="********" required>
+      </label>
+  
+      <label class="label text-secondary">
+        Password hint
+        <input class="input" type="text" placeholder="agentcat.3" required>
+      </label>
+
+      <fieldset class="fieldset">
+        <legend class="text-secondary">Select your color</legend>
+
+        <div class="grid grid-cols-4 mt-2 gap-2 bg-white border-2 border-primary p-5">
+          @for (color of colors; track $index) {
+            @if ($index == checkedColor) {
+              <!-- First color -->
+              <input checked type="radio" name="input-color" class="input-radio" value="{{$index}}" [style]="{backgroundColor: color}">
+            }
+            @else {
+              <input type="radio" name="input-color" class="input-radio" value="{{$index}}" [style]="{backgroundColor: color}">
+            }
+          }
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="label text-secondary">Select your avatar</legend>
+
+        <div class="grid grid-cols-3 mt-2 gap-2 bg-white border-2 border-primary p-5 place-items-center">
+          @for (avatar of avatars; track $index) {
+            @if ($index == checkedAvatar) {
+              <!-- First avatar -->
+              <input checked type="radio" name="input-avatar" class="input-radio-image" value="{{$index}}" [style]="{background: avatar}">
+            }
+            @else {
+              <input type="radio" name="input-avatar" class="input-radio-image" value="{{$index}}" [style]="{background: avatar, backgroundSize: 'cover'}">
+            }
+          }
+        </div>
+      </fieldset>
+    </div>
+
+    <span class="text-primary font-semibold text-sm mt-3">Your tasks have never been so fun and catlike.</span>
+
+    <button class="btn mt-2">Sign up</button>
+  </form>
+</main>
