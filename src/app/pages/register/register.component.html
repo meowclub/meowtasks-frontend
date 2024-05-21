@@ -1,26 +1,26 @@
 <main class="layout">
-  <form action="" class="flex flex-col gap-3 w-full">
+  <form action="" class="flex flex-col gap-3 w-full" [formGroup]="form">
     <h2 class="subt">Ready to manage your tasks? Let's go</h2>
 
     <div class="flex flex-col gap-5">
       <label class="label text-secondary">
         Nickname
-        <input class="input" type="text" placeholder="A cat lover" required>
+        <input class="input" type="text" placeholder="A cat lover" required formControlName="nickname">
       </label>
   
       <label class="label text-secondary">
         Password
-        <input class="input" type="text" placeholder="********" required>
+        <input class="input" type="text" placeholder="********" required formControlName="password">
       </label>
   
       <label class="label text-secondary">
         Confirm password
-        <input class="input" type="text" placeholder="********" required>
+        <input class="input" type="text" placeholder="********" required formControlName="passwordConfirmation">
       </label>
   
       <label class="label text-secondary">
         Password hint
-        <input class="input" type="text" placeholder="agentcat.3" required>
+        <input class="input" type="text" placeholder="agentcat.3" required formControlName="passwordHint">
       </label>
 
       <fieldset class="fieldset">
@@ -30,10 +30,10 @@
           @for (color of colors; track $index) {
             @if ($index == checkedColor) {
               <!-- First color -->
-              <input checked type="radio" name="input-color" class="input-radio" value="{{$index}}" [style]="{backgroundColor: color.value}">
+              <input checked type="radio" name="color" class="input-radio" value="{{color.name}}" [style]="{backgroundColor: color.value}" formControlName="color">
             }
             @else {
-              <input type="radio" name="input-color" class="input-radio" value="{{$index}}" [style]="{backgroundColor: color.value}">
+              <input type="radio" name="color" class="input-radio" value="{{color.name}}" [style]="{backgroundColor: color.value}" formControlName="color">
             }
           }
         </div>
@@ -46,10 +46,10 @@
           @for (avatar of avatars; track $index) {
             @if ($index == checkedAvatar) {
               <!-- First avatar -->
-              <input checked type="radio" name="input-avatar" class="input-radio-image" value="{{$index}}" [style]="{background: avatar.value}">
+              <input checked type="radio" name="avatar" class="input-radio-image" value="{{avatar.name}}" [style]="{background: avatar.value}" formControlName="avatar">
             }
             @else {
-              <input type="radio" name="input-avatar" class="input-radio-image" value="{{$index}}" [style]="{background: avatar.value}">
+              <input type="radio" name="avatar" class="input-radio-image" value="{{avatar.name}}" [style]="{background: avatar.value}" formControlName="avatar">
             }
           }
         </div>
@@ -58,6 +58,6 @@
 
     <span class="text-primary font-semibold text-sm mt-3">Your tasks have never been so fun and catlike.</span>
 
-    <button class="btn mt-2">Sign up</button>
+    <button (click)="onRegister()" class="btn mt-2" [disabled]="!form.valid">Sign up</button>
   </form>
 </main>
