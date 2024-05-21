@@ -9,7 +9,7 @@ import { NgIconComponent } from '@ng-icons/core';
 })
 export class AlertComponent {
   @Input({ required: true })
-  alertTitle:string = '';
+  alertTitle:string|undefined = '';
   @Input({ required: true })
   alertContent:string = '';
   @Input({ required: true })

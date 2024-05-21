@@ -1,7 +1,7 @@
 
 
 export default interface IAlert {
-  alerTitle: string;
+  alerTitle?: string;
   alertContent: string;
   alertType: string;
 }

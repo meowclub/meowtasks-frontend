@@ -38,4 +38,8 @@ export class RestService  implements IRestService {
   register(form: any) {
     return this.http.post<IApiResponse>(this.baseUrl+API_ENDPOINTS.AUTH_REGISTER, form)
   }
+
+  login(form: any) {
+    return this.http.post<IApiResponse>(this.baseUrl+API_ENDPOINTS.AUTH_LOGIN, form)
+  }
 }

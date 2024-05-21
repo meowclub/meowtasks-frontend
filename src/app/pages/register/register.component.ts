@@ -74,7 +74,6 @@ export class RegisterComponent implements OnInit {
     }, 
     err => {
       const alert: IAlert = {
-        alerTitle: 'Error ocurred',
         alertContent: err.error.msg,
         alertType: 'danger'
       }

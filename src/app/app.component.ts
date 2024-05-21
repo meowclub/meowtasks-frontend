@@ -14,7 +14,6 @@ import IAlert from './interfaces/IAlert';
 export class AppComponent implements OnInit {
   title = 'meowtasks-frontend';
   public alert: IAlert = {
-    alerTitle: '',
     alertContent: '',
     alertType: ''
   }
@@ -25,6 +24,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.listener.newAlert.subscribe(data => {
       this.alert = data;
+      
+      // Without alertTitle, set default values
+      if (!data.alerTitle) {
+        this.alert.alerTitle = data.alertType == 'danger' ? '¡Ups!, error ocurred' : data.alertType == 'warning' ? 'Precaution ;w;' : 'All good!'
+      }
+
       this.isAlertActive = true
 
       setTimeout(() => {
