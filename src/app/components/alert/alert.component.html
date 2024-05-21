@@ -1,0 +1,9 @@
+@if (isActive) {
+  <div class="alert {{getClassesByType()}}">
+    <ng-icon class="icon-large" [name]="alertType == 'danger' ? 'matClose' : alertType == 'warning' ? 'matCrisisAlert' : 'matCheck'"></ng-icon>
+    <div>
+      <h2 class="font-bold text-left text-base">{{alertTitle}}</h2>
+      <p class="font-medium text-sm">{{alertContent}}</p>
+    </div>
+  </div>
+}

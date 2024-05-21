@@ -73,3 +73,24 @@ body {
 .layout {
   @apply flex justify-center items-center mx-7 px-5 pb-16;
 }
+
+/* Alert Component */
+.alert {
+  @apply py-5 px-16 flex items-center gap-4 rounded border-4 fixed top-10 right-5;
+}
+
+.alert-success {
+  @apply bg-green-200 border-green-300 text-green-700;
+}
+
+.alert-warning {
+  @apply bg-yellow-200 border-yellow-300 text-yellow-700;
+}
+
+.alert-danger {
+  @apply bg-red-200 border-red-300 text-red-700;
+}
+
+.icon-large {
+  @apply text-5xl;
+}
