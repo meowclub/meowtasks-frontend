@@ -92,7 +92,7 @@ body {
 
 /* Alert Component */
 .alert {
-  @apply p-5 flex items-center gap-4 rounded border-4 fixed top-10 right-0 left-0 mx-10
+  @apply p-5 flex items-center gap-4 rounded border-4 fixed top-10 right-0 left-0 mx-10 z-10
   md:left-auto;
 }
 
@@ -125,4 +125,8 @@ body {
   md:text-lg
   hover:opacity-80
   active:opacity-90;
+}
+
+img {
+  @apply select-none;
 }

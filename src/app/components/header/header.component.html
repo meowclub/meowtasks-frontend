@@ -3,15 +3,22 @@
 
   <nav>
     @if (!loading) {
-      <ul class="flex gap-6 items-center">
-        @if (!token) {
-          <li class="nav-link"><a routerLink="register">Create a account</a></li>
-          <li class="btn"><a routerLink="login">Sign in</a></li>
-        }
-        @else {
-          <li (click)="onLogout()" class="nav-link"><a routerLink="login">logout</a></li>
+      <ul class="hidden md:flex md:gap-4">
+        @for (item of itemsMenu; track $index) {
+          @if (token) {
+            @if (item.onlyLogged) {
+              <li><a routerLink="{{item.routeLink}}" class="{{item.isButton ? 'btn' : 'nav-link'}}">{{item.name}}</a></li>
+            }
+          }
+          @else {
+            @if (!item.onlyLogged) {
+              <li><a routerLink="{{item.routeLink}}" class="{{item.isButton ? 'btn' : 'nav-link'}}">{{item.name}}</a></li>
+            }
+          }
         }
       </ul>
+
+      <app-drop-down-menu class="md:hidden" [itemsMenu]="itemsMenu" [token]="token"></app-drop-down-menu>
     }
     @else {
       <app-loading></app-loading>

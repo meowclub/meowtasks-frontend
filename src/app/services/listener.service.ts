@@ -11,6 +11,8 @@ export class ListenerService {
   token: EventEmitter<string|null> = new EventEmitter();
   @Output()
   tokenSaved: EventEmitter<string|null> = new EventEmitter();
+  @Output()
+  tokenDeleted: EventEmitter<null> = new EventEmitter();
 
   constructor() { }
 

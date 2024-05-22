@@ -1,0 +1,26 @@
+<div class="relative">
+  <div class="bg-background flex p-1 rounded-lg {{opened ? 'rotate-12' : ''}} cursor-pointer" (click)="onClick()">
+    <ng-icon name="matMenu" class="text-4xl text-primary"></ng-icon>
+
+    <img class="h-8" src="https://i.pinimg.com/originals/2e/08/34/2e08344341b6b927fdd0338537b0c2e9.gif">
+  </div>
+
+  @if (opened) {
+    <ul class="absolute top-14 right-0 w-max bg-background border-primary border-2 py-5 px-7 rounded flex flex-col gap-2 z-10">
+      <img class="h-12 absolute -top-12 left-0" src="https://i.pinimg.com/originals/a7/9d/4b/a79d4b6a6b81e44ec79342fa8ba28bf6.gif">
+      
+      @for (item of itemsMenu; track $index) {
+        @if (token) {
+          @if (item.onlyLogged) {
+            <li><a routerLink="{{item.routeLink}}" class="text-primary font-semibold hover:opacity-80">{{item.name}}</a></li>
+          }
+        }
+        @else {
+          @if (!item.onlyLogged) {
+            <li><a routerLink="{{item.routeLink}}" class="text-primary hover:opacity-80">{{item.name}}</a></li>
+          }
+        }
+      }
+    </ul>
+  }
+</div>
