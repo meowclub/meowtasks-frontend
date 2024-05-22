@@ -95,3 +95,7 @@ body {
 .icon-large {
   @apply text-5xl;
 }
+
+.loading {
+  @apply h-5 w-5 bg-primary animate-spin rounded-md;
+}

@@ -2,9 +2,19 @@
   <h1 class="text-xl font-bold text-primary cursor-pointer" routerLink="">meowTasks</h1>
 
   <nav>
-    <ul class="flex gap-3">
-      <li class="text-secondary font-medium"><a routerLink="login">login</a></li>
-      <li class="text-secondary font-medium"><a  routerLink="register">register</a></li>
-    </ul>
+    @if (!loading) {
+      <ul class="flex gap-3">
+        @if (!token) {
+          <li class="text-secondary font-medium"><a routerLink="login">login</a></li>
+          <li class="text-secondary font-medium"><a routerLink="register">register</a></li>
+        }
+        @else {
+          <li (click)="onLogout()" class="text-secondary font-medium"><a routerLink="login">logout</a></li>
+        }
+      </ul>
+    }
+    @else {
+      <app-loading></app-loading>
+    }
   </nav>
 </header>

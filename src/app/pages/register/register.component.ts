@@ -3,6 +3,7 @@ import { RestService } from '../../services/rest.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ListenerService } from '../../services/listener.service';
 import IAlert from '../../interfaces/IAlert';
+import { Router } from '@angular/router';
 
 interface IUtilResponse {
   name: string;
@@ -42,7 +43,11 @@ export class RegisterComponent implements OnInit {
     ])
   })
   
-  constructor(private rest: RestService, private listener: ListenerService) {}
+  constructor(
+    private rest: RestService, 
+    private listener: ListenerService,
+    private router: Router
+  ) {}
 
   async ngOnInit(): Promise<void> {
     // Avatars and colors selection
@@ -71,6 +76,15 @@ export class RegisterComponent implements OnInit {
       }
 
       this.listener.newAlert.emit(alert)
+
+      // Creation of token
+      localStorage.setItem('token', rsp.data);
+
+      // Redirection
+      setTimeout(() => {
+        this.router.navigate(['home'])
+        this.listener.tokenSaved.emit(rsp.data)
+      }, 1000);
     }, 
     err => {
       const alert: IAlert = {

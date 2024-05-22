@@ -4,24 +4,33 @@ import { HeaderComponent } from './components/header/header.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { ListenerService } from './services/listener.service';
 import IAlert from './interfaces/IAlert';
+import { findToken } from './lib/functions';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, AlertComponent],
+  imports: [RouterOutlet, HeaderComponent, AlertComponent, LoadingComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
   title = 'meowtasks-frontend';
-  public alert: IAlert = {
-    alertContent: '',
-    alertType: ''
-  }
-  public isAlertActive: boolean = false;
+  public alert: IAlert;
+  public isAlertActive;
+  public token: string|null = '';
+  public loading: boolean = true;
 
-  constructor(private listener: ListenerService) {}
+  constructor(private listener: ListenerService) {
+    this.alert = {
+      alertContent: '',
+      alertType: ''
+    }
+
+    this.isAlertActive = false;
+  }
 
   ngOnInit(): void {
+    // New alerts
     this.listener.newAlert.subscribe(data => {
       this.alert = data;
       
@@ -34,7 +43,21 @@ export class AppComponent implements OnInit {
 
       setTimeout(() => {
         this.isAlertActive = false
-      }, 2000);
+      }, 1000);
+    })
+    
+    // Find token and send to subscribers
+    this.token = findToken();
+    this.listener.token.emit(this.token)
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
+
+    // In case of to be saved the token, send to subscribers
+    this.listener.tokenSaved.subscribe(token => {
+      this.token = token
+      this.listener.token.emit(this.token)
     })
   }
 }

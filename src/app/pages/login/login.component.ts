@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ListenerService } from '../../services/listener.service';
 import { RestService } from '../../services/rest.service';
 import IAlert from '../../interfaces/IAlert';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,11 @@ export class LoginComponent {
     ])
   })
 
-  constructor(private rest: RestService, private listener: ListenerService) {}
+  constructor(
+    private rest: RestService, 
+    private listener: ListenerService,
+    private router: Router
+  ) { }
 
   onLogin() {
     this.rest.login(this.form.value).subscribe(rsp => {
@@ -33,6 +38,15 @@ export class LoginComponent {
       }
 
       this.listener.newAlert.emit(alert)
+
+      // Creation of token
+      localStorage.setItem('token', rsp.data);
+      
+      // Redirection
+      setTimeout(() => {
+        this.router.navigate(['home'])
+        this.listener.tokenSaved.emit(rsp.data)
+      }, 1000);
     }, 
     err => {
       const alert: IAlert = {

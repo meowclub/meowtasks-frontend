@@ -3,8 +3,18 @@
   <h1 class="title">meowTasks</h1>
   <p class="para">Task manager for cat lovers</p>
 
-  <div class="flex gap-4 mt-5">
-    <button class="btn" routerLink="login">Login</button>
-    <button class="btn" routerLink="register">Register</button>
-  </div>
+  @if (!loading) {
+    <div class="flex gap-4 mt-5">
+      @if (!token) {
+        <button class="btn" routerLink="login">Login</button>
+        <button class="btn" routerLink="register">Register</button>
+      }
+      @else {
+        <button class="btn" routerLink="home">Home</button>
+      }
+    </div>
+  }
+  @else {
+    <app-loading class="mt-5"></app-loading>
+  }
 </main>
