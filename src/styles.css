@@ -7,7 +7,8 @@
   --color-secondary: rgb(146, 139, 119);
   --color-light: rgb(255, 250, 236);
 
-  --color-background: rgb(255, 250, 236);
+  --color-background-body: rgb(255, 250, 236);
+  --color-background: rgb(245, 232, 196);
 
   --color-placeholder: rgb(218, 215, 208);
 
@@ -27,22 +28,29 @@
 }
 
 body {
-  background-color: var(--color-background);
+  background-color: var(--color-background-body);
 }
 
 .title {
   color: var(--color-primary);
-  @apply text-5xl font-bold;
+  @apply text-5xl font-bold
+  md:text-8xl;
 }
 
 .subt {
   color: var(--color-primary);
-  @apply text-2xl font-bold;
+  @apply text-2xl font-bold
+  md:text-4xl;
 }
 
 .para {
   color: var(--color-secondary);
-  @apply text-base font-medium;
+  @apply text-lg font-medium;
+}
+
+.form {
+  @apply w-full
+  sm:w-[450px];
 }
 
 .label {
@@ -57,17 +65,25 @@ body {
   @apply border-2 border-primary p-4 rounded placeholder:text-placeholder;
 }
 
+.container-inputs {
+  grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr));
+  @apply grid gap-4 bg-white border-2 border-primary p-5 place-items-center;
+}
+
 .input-radio {
-  @apply appearance-none h-12 w-12 transition checked:border-2 rounded-full border-primary;
+  @apply h-16 w-full appearance-none transition checked:border-4 rounded border-primary;
 }
 
 .input-radio-image {
-  @apply appearance-none h-16 w-16 transition checked:border-4 rounded-full border-primary;
+  @apply h-16 w-full appearance-none transition checked:border-4 rounded border-primary;
 }
 
 .btn {
   background-color: var(--color-primary);
-  @apply text-light py-4 px-8 rounded-full disabled:opacity-25;
+  @apply text-light py-4 px-8 rounded-full
+  hover:opacity-90
+  active:opacity-80
+  disabled:opacity-30;
 }
 
 .layout {
@@ -98,4 +114,15 @@ body {
 
 .loading {
   @apply h-5 w-5 bg-primary animate-spin rounded-md;
+}
+
+.background {
+  @apply bg-background p-16;
+}
+
+.nav-link {
+  @apply text-secondary font-medium text-base 
+  md:text-lg
+  hover:opacity-80
+  active:opacity-90;
 }

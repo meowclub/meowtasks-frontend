@@ -1,15 +1,15 @@
 <header class="flex justify-between items-center m-7 p-5">
-  <h1 class="text-xl font-bold text-primary cursor-pointer" routerLink="">meowTasks</h1>
+  <h1 class="text-xl font-bold text-primary cursor-pointer md:text-2xl" routerLink="">meowTasks</h1>
 
   <nav>
     @if (!loading) {
-      <ul class="flex gap-3">
+      <ul class="flex gap-6 items-center">
         @if (!token) {
-          <li class="text-secondary font-medium"><a routerLink="login">login</a></li>
-          <li class="text-secondary font-medium"><a routerLink="register">register</a></li>
+          <li class="nav-link"><a routerLink="register">Create a account</a></li>
+          <li class="btn"><a routerLink="login">Sign in</a></li>
         }
         @else {
-          <li (click)="onLogout()" class="text-secondary font-medium"><a routerLink="login">logout</a></li>
+          <li (click)="onLogout()" class="nav-link"><a routerLink="login">logout</a></li>
         }
       </ul>
     }
