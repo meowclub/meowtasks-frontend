@@ -5,7 +5,8 @@ const API_ENDPOINTS = {
   UTIL_AVATARS: 'util/avatars',
   UTIL_COLORS: 'util/colors',
   AUTH_REGISTER: 'auth/register',
-  AUTH_LOGIN: 'auth/login'
+  AUTH_LOGIN: 'auth/login',
+  MEOWUSER_ME: 'meowUser/me'
 };
 
 interface IApiResponse {
@@ -27,6 +28,7 @@ export class RestService  implements IRestService {
 
   constructor(private http: HttpClient) {}
 
+  // util
   getAvatars() {
     return firstValueFrom(this.http.get<IApiResponse>(this.baseUrl+API_ENDPOINTS.UTIL_AVATARS))
   }
@@ -35,11 +37,21 @@ export class RestService  implements IRestService {
     return firstValueFrom(this.http.get<IApiResponse>(this.baseUrl+API_ENDPOINTS.UTIL_COLORS))
   }
 
+  // auth
   register(form: any) {
     return this.http.post<IApiResponse>(this.baseUrl+API_ENDPOINTS.AUTH_REGISTER, form)
   }
 
   login(form: any) {
     return this.http.post<IApiResponse>(this.baseUrl+API_ENDPOINTS.AUTH_LOGIN, form)
+  }
+
+  // meowUser
+  me(token: string) {
+    return this.http.get<IApiResponse>(this.baseUrl+API_ENDPOINTS.MEOWUSER_ME, {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    })
   }
 }

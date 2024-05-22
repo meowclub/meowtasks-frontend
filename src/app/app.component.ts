@@ -6,6 +6,8 @@ import { ListenerService } from './services/listener.service';
 import IAlert from './interfaces/IAlert';
 import { findToken } from './lib/functions';
 import { LoadingComponent } from './components/loading/loading.component';
+import IMeowUser from './interfaces/IMeowUser';
+import { RestService } from './services/rest.service';
 
 @Component({
   selector: 'app-root',
@@ -19,14 +21,22 @@ export class AppComponent implements OnInit {
   public isAlertActive;
   public token: string|null = '';
   public loading: boolean = true;
+  public meowUser: IMeowUser;
 
-  constructor(private listener: ListenerService) {
+  constructor(private listener: ListenerService, private rest: RestService) {
     this.alert = {
       alertContent: '',
       alertType: ''
     }
 
     this.isAlertActive = false;
+    this.meowUser = {
+      meowUserId: 0,
+      nickname: '',
+      passwordHint: '',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
   }
 
   ngOnInit(): void {
@@ -49,6 +59,17 @@ export class AppComponent implements OnInit {
     // Find token and send to subscribers
     this.token = findToken();
     this.listener.token.emit(this.token)
+
+    // Find meowUser and send to subscribers
+    if (this.token) {
+      this.rest.me(this.token).subscribe((rsp) => {
+        this.meowUser = rsp.data;
+
+        this.listener.meowUser.emit(this.meowUser);
+      }, err => {
+        console.log(err.error.msg)
+      })
+    }
 
     setTimeout(() => {
       this.loading = false;
