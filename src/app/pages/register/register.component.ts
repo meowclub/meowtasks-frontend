@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ListenerService } from '../../services/listener.service';
 import IAlert from '../../interfaces/IAlert';
 import { Router } from '@angular/router';
+import { ButtonComponent } from '../../components/button/button.component';
 
 interface IUtilResponse {
   name: string;
@@ -13,7 +14,7 @@ interface IUtilResponse {
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

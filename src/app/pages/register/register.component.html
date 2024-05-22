@@ -58,6 +58,6 @@
 
     <span class="text-primary font-semibold text-sm mt-3">Your tasks have never been so fun and catlike.</span>
 
-    <button (click)="onRegister()" class="btn mt-2" [disabled]="!form.valid">Sign up</button>
+    <app-button name="Sign in" icon="matMoped" class="mt-2" [disabled]="!form.valid" (click)="onRegister()"/>
   </form>
 </main>

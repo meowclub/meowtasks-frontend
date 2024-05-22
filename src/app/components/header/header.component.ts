@@ -4,11 +4,12 @@ import { ListenerService } from '../../services/listener.service';
 import { LoadingComponent } from '../loading/loading.component';
 import { DropDownMenuComponent } from '../drop-down-menu/drop-down-menu.component';
 import IItemMenu from '../../interfaces/IItemMenu';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, LoadingComponent, DropDownMenuComponent],
+  imports: [RouterModule, LoadingComponent, DropDownMenuComponent, ButtonComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -18,17 +19,27 @@ export class HeaderComponent {
   public itemsMenu: IItemMenu[] = [
     {
       name: 'Create a account',
-      routeLink: 'register'
+      routeLink: 'register',
+      icon: 'matMoped'
     },
     {
       name: 'Sign in',
       routeLink: 'login',
-      isButton: true
+      isButton: true,
+      icon: 'matLogin'
+    },
+    {
+      name: 'New task',
+      routeLink: 'tasks/new',
+      isButton: true,
+      icon: 'matLogin',
+      onlyLogged: true
     },
     {
       name: 'Logout',
       routeLink: 'logout',
-      onlyLogged: true
+      onlyLogged: true,
+      icon: 'matLogin'
     },
   ]
   

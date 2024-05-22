@@ -14,7 +14,7 @@
       </label>
     </div>
 
-    <button (click)="onLogin()" class="btn mt-2" [disabled]="!form.valid">Sign in</button>
+    <app-button name="Sign in" icon="matLogin" class="mt-2" [disabled]="!form.valid" (click)="onLogin()"/>
 
     <img class="absolute h-32 -top-7 -right-7 md:-top-5" src="https://www.catster.com/wp-content/uploads/2023/11/Pusheen-Pusheen-Corp-800x800.png" alt="cat saying hi">
   </form>

@@ -1,0 +1,23 @@
+@if (routerLink) {
+  <button 
+    class="btn {{backgroundColor ? backgroundColor : 'bg-primary' }} {{textColor ? textColor : 'text-light' }}" 
+    [routerLink]="routerLink" 
+    [disabled]="disabled"
+  >
+    @if (icon) {
+      <ng-icon [name]="icon"></ng-icon>
+    }
+    <span>{{name}}</span>
+  </button>
+}
+@else {
+  <button 
+    class="btn {{backgroundColor ? backgroundColor : 'bg-primary' }} {{textColor ? textColor : 'text-light' }}" 
+    [disabled]="disabled"
+  >
+  @if (icon) {
+    <ng-icon [name]="icon"></ng-icon>
+  }
+    <span>{{name}}</span>
+  </button>
+}

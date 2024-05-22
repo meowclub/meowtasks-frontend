@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ListenerService } from '../../services/listener.service';
 import { RestService } from '../../services/rest.service';
-import IAlert from '../../interfaces/IAlert';
 import { Router } from '@angular/router';
+import IAlert from '../../interfaces/IAlert';
+import { ButtonComponent } from '../../components/button/button.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

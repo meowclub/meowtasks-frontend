@@ -6,8 +6,8 @@
   @if (!loading) {
     <div class="flex gap-4 mt-5">
       @if (!token) {
-        <button class="btn" routerLink="login">Login</button>
-        <button class="btn" routerLink="register">Register</button>
+        <app-button name="Login" icon="matLogin" routerLink="login"></app-button>
+        <app-button name="Register" icon="matFiberNew" routerLink="register"></app-button>
       }
       @else {
         <button class="btn" routerLink="home">Home</button>

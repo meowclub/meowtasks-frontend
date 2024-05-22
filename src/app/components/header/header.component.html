@@ -3,16 +3,24 @@
 
   <nav>
     @if (!loading) {
-      <ul class="hidden md:flex md:gap-4">
+      <ul class="hidden md:flex md:gap-4 md:items-center">
         @for (item of itemsMenu; track $index) {
           @if (token) {
-            @if (item.onlyLogged) {
-              <li><a routerLink="{{item.routeLink}}" class="{{item.isButton ? 'btn' : 'nav-link'}}">{{item.name}}</a></li>
+            @if (item.onlyLogged && !item.isButton) {
+              <li><a routerLink="{{item.routeLink}}" class="nav-link">{{item.name}}</a></li>
+            }
+
+            @if (item.onlyLogged && item.isButton) {
+              <app-button [name]="item.name" [routerLink]="item.routeLink" [icon]="item.icon"></app-button>
             }
           }
           @else {
-            @if (!item.onlyLogged) {
-              <li><a routerLink="{{item.routeLink}}" class="{{item.isButton ? 'btn' : 'nav-link'}}">{{item.name}}</a></li>
+            @if (!item.onlyLogged && !item.isButton) {
+              <li><a routerLink="{{item.routeLink}}" class="nav-link">{{item.name}}</a></li>
+            }
+
+            @if (!item.onlyLogged && item.isButton) {
+              <app-button [name]="item.name" [routerLink]="item.routeLink" [icon]="item.icon"></app-button>
             }
           }
         }

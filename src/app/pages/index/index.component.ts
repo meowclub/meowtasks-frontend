@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { ButtonComponent } from '../../components/button/button.component';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [RouterModule, LoadingComponent],
+  imports: [RouterModule, LoadingComponent, ButtonComponent],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
 })

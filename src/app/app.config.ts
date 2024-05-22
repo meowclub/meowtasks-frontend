@@ -5,7 +5,7 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideIcons } from '@ng-icons/core'
-import { matClose, matCheck, matCrisisAlert, matMenu, matHome, matLogin, matFiberNew } from '@ng-icons/material-icons/baseline'
+import { matClose, matCheck, matCrisisAlert, matMenu, matHome, matLogin, matFiberNew, matMoped } from '@ng-icons/material-icons/baseline'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,5 +20,6 @@ export const appConfig: ApplicationConfig = {
       matHome,
       matLogin,
       matFiberNew,
+      matMoped
     })]
 };
